@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -105,8 +104,8 @@ export default {
 				'pulse-slow': 'pulse-slow 4s ease-in-out infinite'
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-				display: ['Montserrat', 'sans-serif']
+				sans: ['DM Sans', 'sans-serif'],
+				display: ['DM Sans', 'sans-serif']
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

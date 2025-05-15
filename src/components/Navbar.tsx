@@ -1,29 +1,46 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Handle scroll events to hide/show navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      
+      // Show navbar at the top of the page or when scrolling up
+      const isVisible = currentScrollPos < 10 || prevScrollPos > currentScrollPos;
+      
+      setVisible(isVisible);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos]);
+
   return (
-    <nav className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b">
+    <nav className={`fixed top-0 z-50 w-full bg-transparent transition-transform duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
-          <span className="font-display font-bold text-2xl text-gradient">FBI</span>
+          <img src="/FBI Logo.png" alt="FBI Logo" className="h-8" />
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-6">
           <NavLinks className="flex space-x-6" />
           <Button asChild size="sm" className="bg-fbi-blue hover:bg-fbi-indigo">
-            <a href="https://t.me/farcasterbuildersindia" target="_blank" rel="noopener noreferrer">
-              Join Community
+            <a href="https://t.me/+pX7NaIjUojBhYjM1" target="_blank" rel="noopener noreferrer">
+              Get involved
             </a>
           </Button>
         </div>
@@ -38,13 +55,13 @@ const Navbar = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden absolute w-full bg-white/95 backdrop-blur-md border-b shadow-lg animate-fade-in">
+        <div className="md:hidden absolute w-full bg-black/80 backdrop-blur-md animate-fade-in">
           <div className="container mx-auto px-4 py-4">
             <div className="flex flex-col space-y-4">
               <NavLinks className="flex flex-col space-y-4" />
               <Button asChild size="sm" className="bg-fbi-blue hover:bg-fbi-indigo">
-                <a href="https://t.me/farcasterbuildersindia" target="_blank" rel="noopener noreferrer">
-                  Join Community
+                <a href="https://t.me/+pX7NaIjUojBhYjM1" target="_blank" rel="noopener noreferrer">
+                  Get involved
                 </a>
               </Button>
             </div>
@@ -62,21 +79,12 @@ interface NavLinksProps {
 const NavLinks = ({ className }: NavLinksProps) => {
   return (
     <div className={className}>
-      <Link to="/" className="font-medium text-gray-800 hover:text-fbi-blue transition">
-        Home
-      </Link>
-      <Link to="/programs" className="font-medium text-gray-800 hover:text-fbi-blue transition">
+      <Link to="/programs" className="font-medium text-foreground hover:text-fbi-blue transition">
         Programs
       </Link>
-      <Link to="/success-stories" className="font-medium text-gray-800 hover:text-fbi-blue transition">
-        Success Stories
-      </Link>
-      <Link to="/community" className="font-medium text-gray-800 hover:text-fbi-blue transition">
-        Community
-      </Link>
-      <Link to="/resources" className="font-medium text-gray-800 hover:text-fbi-blue transition">
-        Resources
-      </Link>
+      <a href="https://0xfbi.com/fbi-opportunites" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-fbi-blue transition">
+        Builders
+      </a>
     </div>
   );
 };

@@ -1,9 +1,22 @@
-
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SuccessStoryCard from "@/components/SuccessStoryCard";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+
+// Define the specific types for story categories
+type StoryCategory = "Product" | "Job" | "Funding";
+
+// Define the interface for a story object
+interface Story {
+  id: string;
+  name: string;
+  title: string;
+  description: string;
+  image: string;
+  category: StoryCategory;
+  program: string;
+}
 
 const SuccessStories = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -205,7 +218,7 @@ const SuccessStories = () => {
 };
 
 // Sample data for success stories
-const successStories = [
+const successStories: Story[] = [
   {
     id: "1",
     name: "TechSapiens",

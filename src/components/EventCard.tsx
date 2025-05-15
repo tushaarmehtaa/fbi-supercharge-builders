@@ -40,16 +40,16 @@ const EventCard = ({
       <CardHeader>
         <div className="flex justify-between items-start">
           <Badge className={eventTypeColors[type]}>{eventTypeLabels[type]}</Badge>
-          <div className="flex items-center text-gray-500 text-sm">
+          <div className="flex items-center text-muted-foreground text-sm">
             <Calendar size={14} className="mr-1" />
             <span>{date}</span>
           </div>
         </div>
-        <CardTitle className="text-lg mt-2">{title}</CardTitle>
-        <CardDescription className="text-sm">{location}</CardDescription>
+        <CardTitle className="text-lg mt-2 text-foreground">{title}</CardTitle>
+        <CardDescription className="text-sm text-muted-foreground">{location}</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-gray-600 line-clamp-3">{description}</p>
+        <p className="text-sm text-muted-foreground line-clamp-3">{description}</p>
       </CardContent>
       <CardFooter>
         <Button asChild className="w-full bg-fbi-blue hover:bg-fbi-indigo">

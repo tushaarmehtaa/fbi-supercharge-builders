@@ -1,0 +1,42 @@
+/* Story tiles - Carousel Layout */
+.stories-container {
+  position: relative;
+  width: 100%;
+  height: auto; /* Or a fixed height if desired for the carousel row */
+  overflow: hidden; /* IMPORTANT: Clips the content for scrolling effect */
+}
+
+.stories-set {
+  display: flex; /* Changed from grid to flex */
+  /* The width will be the sum of all tiles. No explicit width needed here if tiles have flex-shrink: 0 */
+  animation: scrollHorizontal 40s linear infinite; /* Adjust duration as needed */
+}
+
+.story-tile {
+  background-color: #000; /* Or var(--card-background) or similar theme variable */
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease; /* Hover effect might be less noticeable with animation */
+  height: 100%; /* Tiles fill the height of their container */
+  width: 300px; /* Fixed width for each tile, adjust as needed */
+  flex-shrink: 0; /* Prevent tiles from shrinking */
+  margin-right: 16px; /* Spacing between tiles */
+  /* For cards with varying content, if not using grid-auto-rows: 1fr, 
+     you might need internal flex to push footers down if TestimonialCard itself isn't handling it. 
+     However, with height: 100% and a single grid row, they should align. */
+}
+
+.story-tile:hover {
+  transform: translateY(-5px);
+  /* animation-play-state: paused; /* Optional: pause animation on hover */
+  z-index: 10;
+}
+
+@keyframes scrollHorizontal {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%); /* Scrolls one full set of the original items due to duplication */
+  }
+}

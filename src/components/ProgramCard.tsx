@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -33,25 +32,29 @@ const ProgramCard = ({
   };
 
   return (
-    <Card className={`overflow-hidden card-hover h-full ${className}`}>
+    <Card className={`flex flex-col overflow-hidden card-hover h-full ${className}`}>
       <div className={`h-2 ${levelColors[level]}`} />
-      <CardHeader>
-        <div className="text-xs font-semibold text-white rounded-full px-3 py-1 mb-2 w-fit bg-fbi-gray">
-          {levelBadge[level]}
-        </div>
-        <CardTitle className="text-xl">{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ul className="space-y-2 list-disc list-inside text-sm text-gray-700">
-          {features.map((feature, index) => (
-            <li key={index}>{feature}</li>
-          ))}
-        </ul>
-      </CardContent>
+      {/* Wrapper for header and content that will grow */}
+      <div className="flex-grow">
+        <CardHeader>
+          <div className="text-xs font-semibold text-white rounded-full px-3 py-1 mb-2 w-fit bg-fbi-gray">
+            {levelBadge[level]}
+          </div>
+          <CardTitle className="text-xl text-foreground">{title}</CardTitle>
+          <CardDescription className="text-muted-foreground">{description}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-2 list-disc list-inside text-sm text-muted-foreground">
+            {features.map((feature, index) => (
+              <li key={index}>{feature}</li>
+            ))}
+          </ul>
+        </CardContent>
+      </div>
+      {/* Footer will be pushed to the bottom */}
       <CardFooter>
         <Button asChild className={`w-full ${level === "lightweight" ? "bg-fbi-teal hover:bg-fbi-green" : level === "medium" ? "bg-fbi-blue hover:bg-fbi-indigo" : "bg-fbi-purple hover:bg-fbi-indigo"}`}>
-          <Link to={link}>Learn More</Link>
+          <Link to="/programs">Learn More</Link>
         </Button>
       </CardFooter>
     </Card>

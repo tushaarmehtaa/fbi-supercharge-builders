@@ -2,18 +2,31 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProgramCard from "@/components/ProgramCard";
 import { Button } from "@/components/ui/button";
+import { LineShadowText } from "@/components/ui/line-shadow-text";
 
 const Programs = () => {
   return (
     <div>
       {/* Hero section */}
-      <section className="bg-gradient-to-br from-white via-gray-50 to-blue-50 py-16 md:py-24">
-        <div className="container mx-auto px-4">
+      <section className="relative overflow-hidden bg-black text-white py-16 md:py-24 min-h-[50vh] flex items-center">
+        {/* Abstract background shapes */}
+        <div className="absolute inset-0 overflow-hidden z-0">
+          <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-fbi-blue/10 blur-3xl opacity-50"></div>
+          <div className="absolute -bottom-24 -left-24 w-96 h-96 rounded-full bg-fbi-purple/10 blur-3xl opacity-50"></div>
+          <div className="absolute top-1/4 left-1/3 w-64 h-64 rounded-full bg-fbi-orange/10 blur-3xl opacity-50"></div>
+        </div>
+        
+        {/* Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        
+        <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold font-display mb-6">
-              FBI <span className="text-gradient">Programs</span>
+            <h1 className="text-balance text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6">
+              <LineShadowText shadowColor="#3b82f6">
+                FBI Programs
+              </LineShadowText>
             </h1>
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-xl text-white max-w-xl mx-auto text-shadow-md mb-8">
               Choose the right path based on your commitment level and accelerate your journey in the Superchain ecosystem.
             </p>
           </div>
@@ -21,34 +34,90 @@ const Programs = () => {
       </section>
 
       {/* Programs section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-black text-white">
         <div className="container mx-auto px-4">
           <Tabs defaultValue="all" className="w-full">
             <div className="flex justify-center mb-8">
-              <TabsList className="grid grid-cols-4 w-full max-w-2xl">
-                <TabsTrigger value="all">All Programs</TabsTrigger>
-                <TabsTrigger value="lightweight">Lightweight</TabsTrigger>
-                <TabsTrigger value="medium">Medium-weight</TabsTrigger>
-                <TabsTrigger value="heavyweight">Heavyweight</TabsTrigger>
+              <TabsList className="grid grid-cols-4 w-full max-w-2xl bg-black/50 border border-white/10">
+                <TabsTrigger value="all" className="data-[state=active]:bg-fbi-blue data-[state=active]:text-white">All Programs</TabsTrigger>
+                <TabsTrigger value="lightweight" className="data-[state=active]:bg-fbi-blue data-[state=active]:text-white">Lightweight</TabsTrigger>
+                <TabsTrigger value="medium" className="data-[state=active]:bg-fbi-blue data-[state=active]:text-white">Medium-weight</TabsTrigger>
+                <TabsTrigger value="heavyweight" className="data-[state=active]:bg-fbi-blue data-[state=active]:text-white">Heavyweight</TabsTrigger>
               </TabsList>
             </div>
 
             <TabsContent value="all">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {allPrograms.map((program) => (
-                  <ProgramCard
-                    key={program.title}
-                    title={program.title}
-                    description={program.description}
-                    features={program.features}
-                    link={program.link}
-                    level={program.level}
-                  />
-                ))}
+              <div className="space-y-16">
+                <div>
+                  <div className="mb-8 text-center">
+                    <h3 className="text-2xl font-bold mb-2">💡 Light Commitment</h3>
+                    <p className="text-muted-foreground italic">for explorers just getting started</p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {allPrograms
+                      .filter((program) => program.level === "lightweight")
+                      .map((program) => (
+                        <ProgramCard
+                          key={program.title}
+                          title={program.title}
+                          description={program.description}
+                          features={program.features}
+                          link={program.link}
+                          level={program.level}
+                        />
+                      ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <div className="mb-8 text-center">
+                    <h3 className="text-2xl font-bold mb-2">🔄 Medium Commitment</h3>
+                    <p className="text-muted-foreground italic">for folks ready to build seriously</p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {allPrograms
+                      .filter((program) => program.level === "medium")
+                      .map((program) => (
+                        <ProgramCard
+                          key={program.title}
+                          title={program.title}
+                          description={program.description}
+                          features={program.features}
+                          link={program.link}
+                          level={program.level}
+                        />
+                      ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <div className="mb-8 text-center">
+                    <h3 className="text-2xl font-bold mb-2">🚀 High Commitment</h3>
+                    <p className="text-muted-foreground italic">for the full-senders</p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {allPrograms
+                      .filter((program) => program.level === "heavyweight")
+                      .map((program) => (
+                        <ProgramCard
+                          key={program.title}
+                          title={program.title}
+                          description={program.description}
+                          features={program.features}
+                          link={program.link}
+                          level={program.level}
+                        />
+                      ))}
+                  </div>
+                </div>
               </div>
             </TabsContent>
 
             <TabsContent value="lightweight">
+              <div className="mb-8 text-center">
+                <h3 className="text-2xl font-bold mb-2">💡 Light Commitment</h3>
+                <p className="text-muted-foreground italic">for explorers just getting started</p>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {allPrograms
                   .filter((program) => program.level === "lightweight")
@@ -66,6 +135,10 @@ const Programs = () => {
             </TabsContent>
 
             <TabsContent value="medium">
+              <div className="mb-8 text-center">
+                <h3 className="text-2xl font-bold mb-2">🔄 Medium Commitment</h3>
+                <p className="text-muted-foreground italic">for folks ready to build seriously</p>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {allPrograms
                   .filter((program) => program.level === "medium")
@@ -83,6 +156,10 @@ const Programs = () => {
             </TabsContent>
 
             <TabsContent value="heavyweight">
+              <div className="mb-8 text-center">
+                <h3 className="text-2xl font-bold mb-2">🚀 High Commitment</h3>
+                <p className="text-muted-foreground italic">for the full-senders</p>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {allPrograms
                   .filter((program) => program.level === "heavyweight")
@@ -103,50 +180,60 @@ const Programs = () => {
       </section>
 
       {/* Program overview section */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-black text-white border-t border-white/10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
-              <h2 className="text-3xl font-bold font-display mb-6">How Our Programs Work</h2>
-              <p className="text-gray-600 mb-6">
-                FBI offers a comprehensive range of programs designed to accommodate different commitment levels and learning styles. Our programs are structured to help you progress from basic knowledge to advanced skills in the Superchain ecosystem.
+              <h2 className="text-3xl font-bold mb-4">how our programs work</h2>
+              <p className="text-xl font-medium text-fbi-blue mb-6">
+                we don't do lectures. we do momentum.
               </p>
-              <p className="text-gray-600 mb-6">
-                Whether you're looking for a quick introduction through our lightweight programs, structured learning in our medium-weight offerings, or deep immersion in our heavyweight programs, we have a path for you.
+              <p className="text-muted-foreground mb-6">
+                fbi programs are built for all kinds of builders—whether you're just getting started, coming back to code, or already shipping onchain.
+                lightweight? medium? full-send? pick your pace, we'll match your energy.
               </p>
-              <p className="text-gray-600">
-                All programs include community support, practical building exercises, and opportunities to connect with peers and industry experts.
-              </p>
+              <p className="text-white font-medium mb-3 mt-8">every track includes:</p>
+              <ul className="space-y-3 text-muted-foreground">
+                <li className="flex items-center">
+                  <span className="text-fbi-blue mr-2">•</span> community support (real people, not just a discord)
+                </li>
+                <li className="flex items-center">
+                  <span className="text-fbi-blue mr-2">•</span> hands-on building
+                </li>
+                <li className="flex items-center">
+                  <span className="text-fbi-blue mr-2">•</span> access to mentors, peers, and weird internet friends
+                </li>
+              </ul>
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-md border">
-              <h3 className="text-xl font-bold mb-6 text-center">Program Progression Path</h3>
+            <div className="bg-black/40 p-8 rounded-lg border border-white/10">
+              <h3 className="text-xl font-bold mb-6 text-center text-white">program path</h3>
               <div className="space-y-8">
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-fbi-teal text-white flex items-center justify-center font-bold flex-shrink-0">1</div>
                   <div className="ml-4">
-                    <h4 className="font-medium">Start with Lightweight Programs</h4>
-                    <p className="text-sm text-gray-600">Build foundational knowledge through introductory events</p>
+                    <h4 className="font-medium text-white">start small</h4>
+                    <p className="text-sm text-muted-foreground">get into the flow with workshops, meetups, and hyperthons</p>
                   </div>
                 </div>
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-fbi-blue text-white flex items-center justify-center font-bold flex-shrink-0">2</div>
                   <div className="ml-4">
-                    <h4 className="font-medium">Progress to Medium-weight Programs</h4>
-                    <p className="text-sm text-gray-600">Deepen your skills with structured cohort-based learning</p>
+                    <h4 className="font-medium text-white">level up</h4>
+                    <p className="text-sm text-muted-foreground">join a cohort, build in public, get feedback, go deeper</p>
                   </div>
                 </div>
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-fbi-purple text-white flex items-center justify-center font-bold flex-shrink-0">3</div>
                   <div className="ml-4">
-                    <h4 className="font-medium">Graduate to Heavyweight Programs</h4>
-                    <p className="text-sm text-gray-600">Fully immerse yourself in long-term, high-impact initiatives</p>
+                    <h4 className="font-medium text-white">go all in</h4>
+                    <p className="text-sm text-muted-foreground">fellowships, IRL jams, funding, serious product work</p>
                   </div>
                 </div>
                 <div className="flex items-center">
                   <div className="w-10 h-10 rounded-full bg-fbi-green text-white flex items-center justify-center font-bold flex-shrink-0">4</div>
                   <div className="ml-4">
-                    <h4 className="font-medium">Contribute Back to the Ecosystem</h4>
-                    <p className="text-sm text-gray-600">Become a mentor, speaker, or contributor to FBI initiatives</p>
+                    <h4 className="font-medium text-white">give back</h4>
+                    <p className="text-sm text-muted-foreground">become a mentor, co-host events, or just show up for the next batch</p>
                   </div>
                 </div>
               </div>
@@ -155,23 +242,21 @@ const Programs = () => {
         </div>
       </section>
 
+      {/* Spacer section */}
+      <div className="py-8"></div>
+
       {/* CTA section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-black text-white border-t border-white/10">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold font-display mb-6">Ready to Start Your Journey?</h2>
-            <p className="text-lg text-gray-600 mb-8">
-              Join one of our programs today and become part of the growing community of builders on the Superchain ecosystem.
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">READY TO JOIN?</h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+              you're not too late. you're just in time to find your people, ship awesome stuff, and go full onchain.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-fbi-blue hover:bg-fbi-indigo">
-                <a href="https://t.me/farcasterbuildersindia" target="_blank" rel="noopener noreferrer">
-                  Join FBI Community
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="border-fbi-blue text-fbi-blue hover:bg-fbi-blue/5">
-                <a href="mailto:team@fbi.community" target="_blank" rel="noopener noreferrer">
-                  Contact Us
+            <div className="flex justify-center">
+              <Button asChild size="lg" className="bg-fbi-blue hover:bg-fbi-indigo text-white">
+                <a href="https://t.me/+pX7NaIjUojBhYjM1" target="_blank" rel="noopener noreferrer">
+                  JOIN THE COMMUNITY
                 </a>
               </Button>
             </div>
@@ -185,118 +270,101 @@ const Programs = () => {
 // Sample data for all programs
 const allPrograms = [
   {
-    title: "FBI Hyperthons",
-    description: "Quick, focused coding events to build specific features or components for the Superchain ecosystem.",
+    title: "🛠 Hyperthons",
+    description: "weekend sprints to build miniapps or features for the superchain.",
     features: [
-      "Weekend-long building sprints",
-      "Clear, specific project goals",
-      "Mentor support throughout",
-      "Prizes for top submissions",
-      "Virtual participation options"
+      "real prompts, fast builds",
+      "mentor nudges while you ship",
+      "prizes that matter (and not just swag)"
     ],
     link: "/programs/lightweight",
     level: "lightweight" as const
   },
   {
-    title: "Speed Coding Workshops",
-    description: "Hands-on sessions focusing on specific technical skills needed for Superchain development.",
+    title: "⚡️ Speed Coding Workshops",
+    description: "short, focused sessions to level up specific skills.",
     features: [
-      "3-4 hour focused sessions",
-      "Learn by doing approach",
-      "Take-home assignments",
-      "Community code review",
-      "Regular weekly schedule"
+      "3–4 hours, all hands-on",
+      "no lectures, just builds",
+      "take-home prompts to keep growing"
     ],
     link: "/programs/lightweight",
     level: "lightweight" as const
   },
   {
-    title: "FBI Meetups",
-    description: "Regular community gatherings in major Indian cities to network and learn about Superchain development.",
+    title: "☕️ FBI Meetups",
+    description: "offline hangs for devs, creators, and internet kids.",
     features: [
-      "Monthly in-person events",
-      "Expert speakers and demos",
-      "Networking opportunities",
-      "Beginner-friendly content",
-      "Free to attend"
+      "monthly meetups in indian cities",
+      "demos, convos, sometimes chaos",
+      "beginner-friendly, always real",
+      "free. just show up."
     ],
     link: "/programs/lightweight",
     level: "lightweight" as const
   },
   {
-    title: "SuperBased",
-    description: "Our flagship 8-week cohort-based program for developers ready to build production-grade applications.",
+    title: "🔧 SuperBased",
+    description: "an 8-week build-first cohort for early-stage onchain devs.",
     features: [
-      "Comprehensive curriculum",
-      "Weekly group sessions",
-      "1:1 mentorship",
-      "Capstone project development",
-      "Job placement assistance"
+      "weekly deep dives and live sessions",
+      "1:1 mentor support",
+      "ship real products, not tutorials"
     ],
     link: "/programs/medium",
     level: "medium" as const
   },
   {
-    title: "Frames Bootcamp",
-    description: "A 4-week intensive program focused exclusively on mastering Farcaster Frames development.",
+    title: "🖼 Frames Bootcamp",
+    description: "master Farcaster Frames development in 4 intensive weeks.",
     features: [
-      "From basics to advanced techniques",
-      "Live coding sessions",
-      "Project reviews and feedback",
-      "Access to frames templates",
-      "Community showcase opportunity"
+      "from basics to advanced techniques",
+      "live coding sessions",
+      "build, get feedback, improve, repeat"
     ],
     link: "/programs/medium",
     level: "medium" as const
   },
   {
-    title: "Base Explorer",
-    description: "A guided journey through building advanced applications on Base with direct ecosystem support.",
+    title: "🧭 Base Explorer",
+    description: "build advanced apps on Base with ecosystem support.",
     features: [
-      "3-month structured curriculum",
-      "Bi-weekly mentorship calls",
-      "Technical deep dives",
-      "Collaboration opportunities",
-      "Base ecosystem introductions"
+      "4-week structured curriculum",
+      "mentorship from builders who've been there",
+      "deep dives into frames, infra, and DeFi flows"
     ],
     link: "/programs/medium",
     level: "medium" as const
   },
   {
-    title: "Based Fellowship",
-    description: "A prestigious 6-month program for experienced developers ready to make significant contributions.",
+    title: "🏕 Based Fellowship",
+    description: "our flagship 2-week IRL + virtual program for experienced devs.",
     features: [
-      "Exclusive access to Base team",
-      "Funding for project development",
-      "High-level mentorship",
-      "Speaking opportunities",
-      "Industry recognition"
+      "build real things with real teammates",
+      "access to the Base team",
+      "mentorship, funding, visibility"
     ],
     link: "/programs/heavyweight",
     level: "heavyweight" as const
   },
   {
-    title: "Onchain Summercamp",
-    description: "A year-long immersive experience building production-ready applications with substantial support.",
+    title: "🔥 Onchain Summercamp",
+    description: "a wild experiment in co-creation. code, content, design—anything goes.",
     features: [
-      "Full-time commitment option",
-      "Substantial funding available",
-      "Direct access to investors",
-      "Technical and business mentorship",
-      "Go-to-market support"
+      "work with farcaster OGs + top creators",
+      "build for real communities",
+      "earn retro rewards ($10k+ in bounties)"
     ],
     link: "/programs/heavyweight",
     level: "heavyweight" as const
   },
   {
-    title: "Superchain Visionaries",
-    description: "An elite program for founders building significant infrastructure or applications for the ecosystem.",
+    title: "🚀 Superchain Visionaries",
+    description: "for founders building significant infrastructure or applications.",
     features: [
-      "Strategic ecosystem partnerships",
-      "Executive mentorship",
-      "Dedicated technical support",
-      "Investor introductions",
-      "Marketing and launch support"
+      "strategic ecosystem partnerships",
+      "executive mentorship",
+      "dedicated technical support"
     ],
     link: "/programs/heavyweight",
     level: "heavyweight" as const

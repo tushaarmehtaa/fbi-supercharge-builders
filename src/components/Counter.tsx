@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from "react";
+import { GradientText } from "@/components/ui/gradient-text";
 
 interface CounterProps {
   targetNumber: number;
@@ -46,7 +47,13 @@ const Counter = ({
   return (
     <div className={className}>
       <span>{prefix}</span>
-      <span>{count.toLocaleString()}</span>
+      <GradientText 
+        from="from-blue-500" 
+        to="to-blue-300/80" 
+        className="text-8xl font-semibold leading-none"
+      >
+        {count.toLocaleString()}
+      </GradientText>
       <span>{suffix}</span>
     </div>
   );

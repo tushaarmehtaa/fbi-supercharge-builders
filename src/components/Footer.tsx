@@ -1,115 +1,112 @@
-
 import { Link } from "react-router-dom";
-import { Twitter, Github, Instagram } from "lucide-react";
+import { Twitter, Github, Instagram, MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const Footer = () => {
+interface FooterProps {
+  telegramLink?: string;
+}
+
+const Footer = ({ telegramLink = "https://t.me/fbi_gm" }: FooterProps) => {
   return (
-    <footer className="bg-fbi-dark text-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="space-y-4">
-            <h2 className="font-display font-bold text-2xl text-white">FBI</h2>
-            <p className="text-gray-300 max-w-xs">
-              Farcaster Builders India is a collective of Indian founders, builders, and operators
-              accelerating the Superchain ecosystem.
-            </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-fbi-blue transition">
-                <Twitter size={20} />
+    <footer className="bg-black text-foreground border-t border-border/30">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          {/* Left Column - Organization Info */}
+          <div className="space-y-6">
+            <Link to="/" className="inline-block">
+              <img src="/FBI Logo.png" alt="FBI Logo" className="h-10" />
+            </Link>
+            
+            <div className="space-y-3">
+              <p className="text-white text-lg font-medium leading-relaxed">
+                Building the next 10,000 onchain builders from India.
+              </p>
+              <p className="text-muted-foreground">
+                Not in a decade. Now.
+              </p>
+            </div>
+            
+            <div className="flex items-center space-x-6 pt-2">
+              <a 
+                href="https://twitter.com/BasedIndia" 
+                className="text-muted-foreground hover:text-white transition-colors duration-200" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Twitter"
+              >
+                <Twitter size={22} strokeWidth={1.5} />
               </a>
-              <a href="#" className="text-white hover:text-fbi-blue transition">
-                <Github size={20} />
+              <a 
+                href="https://github.com/farcasterbuildersindia" 
+                className="text-muted-foreground hover:text-white transition-colors duration-200" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <Github size={22} strokeWidth={1.5} />
               </a>
-              <a href="#" className="text-white hover:text-fbi-blue transition">
-                <Instagram size={20} />
+              <a 
+                href="https://www.instagram.com/farcasterbuildersindia" 
+                className="text-muted-foreground hover:text-white transition-colors duration-200" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <Instagram size={22} strokeWidth={1.5} />
               </a>
             </div>
           </div>
 
-          <div>
-            <h3 className="font-bold mb-4 text-white text-lg">Programs</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/programs/lightweight" className="text-gray-300 hover:text-fbi-blue transition">
-                  Lightweight Programs
+          {/* Right Column - Resources & Contact */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h3 className="text-white text-xl font-medium">resources</h3>
+              <div className="flex flex-wrap">
+                <Link 
+                  to="/resources" 
+                  className="text-muted-foreground hover:text-white transition-colors duration-200 pr-4"
+                >
+                  brandbook
                 </Link>
-              </li>
-              <li>
-                <Link to="/programs/medium" className="text-gray-300 hover:text-fbi-blue transition">
-                  Medium-weight Programs
+                <div className="text-muted-foreground/40 pr-4">|</div>
+                <Link 
+                  to="/resources" 
+                  className="text-muted-foreground hover:text-white transition-colors duration-200 pr-4"
+                >
+                  farcaster 101
                 </Link>
-              </li>
-              <li>
-                <Link to="/programs/heavyweight" className="text-gray-300 hover:text-fbi-blue transition">
-                  Heavyweight Programs
+                <div className="text-muted-foreground/40 pr-4">|</div>
+                <Link 
+                  to="/resources" 
+                  className="text-muted-foreground hover:text-white transition-colors duration-200"
+                >
+                  dev starter kit
                 </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-bold mb-4 text-white text-lg">Resources</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/resources" className="text-gray-300 hover:text-fbi-blue transition">
-                  FBI Brandbook
-                </Link>
-              </li>
-              <li>
-                <Link to="/resources" className="text-gray-300 hover:text-fbi-blue transition">
-                  $DEGEN for Rookies
-                </Link>
-              </li>
-              <li>
-                <Link to="/resources" className="text-gray-300 hover:text-fbi-blue transition">
-                  Developer Resources
-                </Link>
-              </li>
-              <li>
-                <Link to="/resources" className="text-gray-300 hover:text-fbi-blue transition">
-                  Frames Resources
-                </Link>
-              </li>
-              <li>
-                <Link to="/resources" className="text-gray-300 hover:text-fbi-blue transition">
-                  Farcaster 101
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="font-bold mb-4 text-white text-lg">Get Involved</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="https://t.me/farcasterbuildersindia" className="text-gray-300 hover:text-fbi-blue transition">
-                  Join Telegram
+              </div>
+            </div>
+            
+            <div className="space-y-4">
+              <p className="text-white text-lg">got questions?</p>
+              <Button 
+                asChild 
+                variant="outline" 
+                className="flex items-center space-x-2 border-fbi-blue text-fbi-blue hover:bg-fbi-blue/10 hover:text-white"
+              >
+                <a 
+                  href={telegramLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle size={18} className="mr-2" />
+                  dm us on telegram
                 </a>
-              </li>
-              <li>
-                <Link to="/community" className="text-gray-300 hover:text-fbi-blue transition">
-                  Attend Meetups
-                </Link>
-              </li>
-              <li>
-                <Link to="/programs" className="text-gray-300 hover:text-fbi-blue transition">
-                  Apply for Programs
-                </Link>
-              </li>
-            </ul>
+              </Button>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-10 pt-6 flex flex-col md:flex-row justify-between text-gray-400 text-sm">
-          <div>&copy; {new Date().getFullYear()} Farcaster Builders India. All rights reserved.</div>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link to="/privacy" className="hover:text-fbi-blue transition">
-              Privacy Policy
-            </Link>
-            <Link to="/terms" className="hover:text-fbi-blue transition">
-              Terms of Service
-            </Link>
-          </div>
+        <div className="border-t border-border/30 mt-12 pt-8 text-center text-muted-foreground text-sm">
+          &copy; 2025 FBI. made with ❤️ + chaos.
         </div>
       </div>
     </footer>
