@@ -2,6 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+console.log("Vite Environment Variables (from App.tsx):", import.meta.env);
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Programs from "./pages/Programs";
@@ -9,6 +10,7 @@ import SuccessStories from "./pages/SuccessStories";
 import Community from "./pages/Community";
 import Resources from "./pages/Resources";
 import Builders from "./pages/Builders";
+import BecomeABuilder from "./pages/BecomeABuilder";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -31,6 +33,7 @@ const App = () => (
               <Route path="/community" element={<Community />} />
               <Route path="/resources" element={<Resources />} />
               <Route path="/builders" element={<Builders />} />
+              <Route path="/become-a-builder" element={<BecomeABuilder />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

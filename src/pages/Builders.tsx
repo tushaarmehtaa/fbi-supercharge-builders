@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import { Input } from "@/components/ui/input";
 import { Search, PlusCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BuilderCard, { BuilderCardProps } from "@/components/BuilderCard";
+import { supabase } from '@/lib/supabaseClient';
 
-// Temporary mock data - this will be replaced with data from Notion
+// Mock data can be kept for reference or testing if needed
 const mockBuilders: BuilderCardProps[] = [
   {
     id: "1",
@@ -61,26 +63,49 @@ const mockBuilders: BuilderCardProps[] = [
     projects: ["Wallet App", "NFT Platform"]
   }
 ];
+// The above mockBuilders array is no longer used directly for display but can be kept for reference or testing.
 
 const Builders = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [builders, setBuilders] = useState<BuilderCardProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // In a real implementation, this would fetch from your Notion database
   useEffect(() => {
-    // Simulate API call
     const fetchBuilders = async () => {
       try {
-        // TODO: Replace with actual Notion API call
-        // const response = await fetch('/api/builders');
-        // const data = await response.json();
-        // setBuilders(data);
-        
-        // Using mock data for now
-        setBuilders(mockBuilders);
+        const { data, error } = await supabase
+          .from('builders')
+          .select('*')
+          .order('created_at', { ascending: false }); // Show newest first
+
+        if (error) {
+          throw error;
+        }
+
+        if (data) {
+          // Map Supabase data to BuilderCardProps if necessary
+          // Assuming column names match the props directly
+          // If avatar_url is null from DB, BuilderCard should handle a default or no image
+          const fetchedBuilders: BuilderCardProps[] = data.map(builder => ({
+            id: builder.id.toString(), // Ensure id is string if it's not from DB
+            name: builder.name,
+            role: builder.role,
+            bio: builder.bio,
+            avatarUrl: builder.avatar_url || undefined, // Pass undefined if null for default handling in card
+            skills: builder.skills || [],
+            projects: builder.projects || [],
+            // Add social links if they are part of BuilderCardProps and you fetch them
+            // twitterUrl: builder.twitter_url || undefined,
+            // githubUrl: builder.github_url || undefined,
+            // linkedinUrl: builder.linkedin_url || undefined,
+          }));
+          setBuilders(fetchedBuilders);
+        }
       } catch (error) {
-        console.error("Error fetching builders:", error);
+        console.error("Error fetching builders from Supabase:", error);
+        // Optionally, set an error state here to display to the user
       } finally {
         setIsLoading(false);
       }
@@ -108,19 +133,19 @@ const Builders = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-white to-gray-50 py-16 md:py-24">
+      <section className="bg-gradient-to-b from-background to-gray-900 py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold font-display mb-6">
             Meet Our <span className="text-fbi-blue">Builders</span>
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
             A community of passionate individuals building the future of the Superchain ecosystem.
             Join us and be part of something bigger.
           </p>
           <div className="max-w-2xl mx-auto relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
               type="text"
               placeholder="Search builders by name, role, or skills..."
@@ -133,11 +158,11 @@ const Builders = () => {
       </section>
 
       {/* Builders Grid */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-gray-900">
         <div className="container mx-auto px-4">
           <div className="mb-8">
             <h2 className="text-2xl font-bold mb-2">Featured Builders</h2>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               {filteredBuilders.length} {filteredBuilders.length === 1 ? 'builder' : 'builders'} found
             </p>
           </div>
@@ -150,11 +175,11 @@ const Builders = () => {
             </div>
           ) : (
             <div className="text-center py-12">
-              <div className="text-gray-400 mb-4">
+              <div className="text-muted-foreground mb-4">
                 <Search className="h-12 w-12 mx-auto" />
               </div>
               <h3 className="text-xl font-medium mb-2">No builders found</h3>
-              <p className="text-gray-500">
+              <p className="text-muted-foreground">
                 Try adjusting your search or check back later for new builders.
               </p>
             </div>
@@ -163,7 +188,7 @@ const Builders = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-background">
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-3xl mx-auto">
             <div className="relative mb-8 overflow-hidden rounded-2xl shadow-xl">
@@ -177,8 +202,7 @@ const Builders = () => {
                   size="lg" 
                   className="bg-white text-fbi-blue hover:bg-gray-100 hover:text-fbi-blue/90 transition-colors"
                   onClick={() => {
-                    // TODO: Implement navigation to onboarding form
-                    console.log('Navigate to onboarding form');
+                    navigate('/become-a-builder');
                   }}
                 >
                   Become a Builder

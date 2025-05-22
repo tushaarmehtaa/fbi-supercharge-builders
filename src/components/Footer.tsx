@@ -10,13 +10,13 @@ const Footer = ({ telegramLink = "https://t.me/fbi_gm" }: FooterProps) => {
   return (
     <footer className="bg-black text-foreground border-t border-border/30">
       <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Left Column - Organization Info */}
-          <div className="space-y-6">
+        {/* Main flex container for two blocks, centered on md+ screens */}
+        <div className="flex flex-col md:flex-row items-start md:justify-center text-left gap-y-10 md:gap-x-8 lg:gap-x-10">
+          {/* Block 1: Organization Info */}
+          <div className="space-y-6 w-full md:w-auto">
             <Link to="/" className="inline-block">
               <img src="/FBI Logo.png" alt="FBI Logo" className="h-10" />
             </Link>
-            
             <div className="space-y-3">
               <p className="text-white text-lg font-medium leading-relaxed">
                 Building the next 10,000 onchain builders from India.
@@ -25,7 +25,6 @@ const Footer = ({ telegramLink = "https://t.me/fbi_gm" }: FooterProps) => {
                 Not in a decade. Now.
               </p>
             </div>
-            
             <div className="flex items-center space-x-6 pt-2">
               <a 
                 href="https://twitter.com/BasedIndia" 
@@ -57,22 +56,26 @@ const Footer = ({ telegramLink = "https://t.me/fbi_gm" }: FooterProps) => {
             </div>
           </div>
 
-          {/* Right Column - Resources & Contact */}
-          <div className="space-y-8 flex flex-col md:items-end">
+          {/* Block 2: Resources and Support (grouped) */}
+          <div className="flex flex-col sm:flex-row items-start text-left gap-y-8 sm:gap-x-6 lg:gap-x-8">
+            {/* Sub-block: Resources */}
             <div className="space-y-4">
-              <h3 className="text-white text-xl font-medium">resources</h3>
-              <div className="flex flex-wrap">
+              <h3 className="text-white text-xl font-medium">Resources</h3>
+              <div className="flex flex-col space-y-2">
                 <Link 
                   to="/resources" 
                   className="text-muted-foreground hover:text-white transition-colors duration-200"
                 >
-                  brandbook
+                  Brandbook
                 </Link>
+                {/* Add more links here if needed */}
               </div>
             </div>
             
+            {/* Sub-block: Support */}
             <div className="space-y-4">
-              <p className="text-white text-lg">got questions?</p>
+              <h3 className="text-white text-xl font-medium">Support</h3>
+              <p className="text-white text-lg">Got questions?</p>
               <Button
                 asChild
                 size="sm"
