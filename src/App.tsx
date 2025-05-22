@@ -8,6 +8,7 @@ import Programs from "./pages/Programs";
 import SuccessStories from "./pages/SuccessStories";
 import Community from "./pages/Community";
 import Resources from "./pages/Resources";
+import Builders from "./pages/Builders";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -29,6 +30,7 @@ const App = () => (
               <Route path="/success-stories" element={<SuccessStories />} />
               <Route path="/community" element={<Community />} />
               <Route path="/resources" element={<Resources />} />
+              <Route path="/builders" element={<Builders />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

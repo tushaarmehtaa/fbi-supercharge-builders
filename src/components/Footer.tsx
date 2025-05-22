@@ -58,47 +58,34 @@ const Footer = ({ telegramLink = "https://t.me/fbi_gm" }: FooterProps) => {
           </div>
 
           {/* Right Column - Resources & Contact */}
-          <div className="space-y-8">
+          <div className="space-y-8 flex flex-col md:items-end">
             <div className="space-y-4">
               <h3 className="text-white text-xl font-medium">resources</h3>
               <div className="flex flex-wrap">
                 <Link 
                   to="/resources" 
-                  className="text-muted-foreground hover:text-white transition-colors duration-200 pr-4"
-                >
-                  brandbook
-                </Link>
-                <div className="text-muted-foreground/40 pr-4">|</div>
-                <Link 
-                  to="/resources" 
-                  className="text-muted-foreground hover:text-white transition-colors duration-200 pr-4"
-                >
-                  farcaster 101
-                </Link>
-                <div className="text-muted-foreground/40 pr-4">|</div>
-                <Link 
-                  to="/resources" 
                   className="text-muted-foreground hover:text-white transition-colors duration-200"
                 >
-                  dev starter kit
+                  brandbook
                 </Link>
               </div>
             </div>
             
             <div className="space-y-4">
               <p className="text-white text-lg">got questions?</p>
-              <Button 
-                asChild 
-                variant="outline" 
-                className="flex items-center space-x-2 border-fbi-blue text-fbi-blue hover:bg-fbi-blue/10 hover:text-white"
+              <Button
+                asChild
+                size="sm"
+                variant="outline"
+                className="inline-flex items-center border-fbi-blue text-fbi-blue hover:bg-fbi-blue/10 hover:text-white"
               >
-                <a 
-                  href={telegramLink} 
-                  target="_blank" 
+                <a
+                  href={telegramLink}
+                  target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <MessageCircle size={18} className="mr-2" />
-                  dm us on telegram
+                  <MessageCircle size={16} className="mr-2" />
+                  DM on Telegram
                 </a>
               </Button>
             </div>

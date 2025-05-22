@@ -119,43 +119,70 @@ const upcomingEvents = [
   }
 ];
 
-// Past events data with images
+// Past events data with real events
 const pastEvents = [
   {
-    title: "Farcaster Hackathon",
-    src: "https://images.unsplash.com/photo-1540304453527-62f979142a17?q=80&w=2070&auto=format&fit=crop",
-    date: "15 Mar 2025",
-    location: "Mumbai"
+    title: "Frames v1 Hackathon @Antler",
+    description: "A hackathon focused on Frames v1 development with hands-on workshops and networking.",
+    src: "/images/events/frames-v1-hackathon-antler.jpg",
+    date: "15-17 Nov 2024",
+    location: "Antler, Bangalore"
   },
   {
-    title: "Web3 Summit",
-    src: "https://images.unsplash.com/photo-1591115765373-5207764f72e4?q=80&w=2070&auto=format&fit=crop",
-    date: "28 Feb 2025",
-    location: "Delhi"
+    title: "Base Meetup @Zo",
+    description: "Community meetup for Base developers and enthusiasts to connect and share knowledge.",
+    src: "/images/events/base-meetup-zo.jpg",
+    date: "2 Nov 2024",
+    location: "ZO, Bangalore"
   },
   {
-    title: "Based Fellowship Showcase",
-    src: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=2070&auto=format&fit=crop",
-    date: "12 Feb 2025",
-    location: "Bangalore"
+    title: "SuperBased Meetups",
+    description: "A series of community-driven meetups bringing together builders across the ecosystem.",
+    src: "/images/events/superbased-meetups.jpg",
+    date: "Oct 2024",
+    location: "Various Locations, Bangalore"
   },
   {
-    title: "Crypto Community Meetup",
-    src: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=2070&auto=format&fit=crop",
-    date: "25 Jan 2025",
-    location: "Hyderabad"
+    title: "Based Fellowship 1.0 @Dharamshala",
+    description: "Our inaugural fellowship program that kickstarted many Web3 journeys.",
+    src: "/images/events/based-fellowship-1-dharamshala.jpg",
+    date: "1-7 Apr 2024",
+    location: "Dharamshala, India"
   },
   {
-    title: "Blockchain Developer Workshop",
-    src: "https://images.unsplash.com/photo-1559223607-a43c990c692c?q=80&w=2070&auto=format&fit=crop",
-    date: "10 Jan 2025",
+    title: "Farcaster Fridays @Hashed Haus",
+    description: "Weekly gatherings for Farcaster enthusiasts to build and collaborate.",
+    src: "/images/events/farcaster-fridays-hashed-haus.jpg",
+    date: "Jul - Aug 2024",
+    location: "Hashed Haus, Bangalore"
+  },
+  {
+    title: "Based Around The World Buildathon",
+    description: "Global virtual buildathon connecting builders from around the world.",
+    src: "/images/events/based-around-the-world-buildathon.jpg",
+    date: "10-30 Jun 2024",
     location: "Virtual"
   },
   {
-    title: "FBI Builders Retreat",
-    src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop",
-    date: "15-18 Dec 2024",
-    location: "Goa"
+    title: "Base Events @ETHIndia & IBW",
+    description: "Engaging with the community and showcasing Base at premier blockchain events.",
+    src: "/images/events/base-events-ethindia-ibw.jpg",
+    date: "5-10 Dec 2023",
+    location: "Bangalore, India"
+  },
+  {
+    title: "Coinbase AI Hackathon @Antler",
+    description: "Hackathon focused on AI and blockchain integration, hosted at Antler.",
+    src: "/images/events/coinbase-ai-hackathon-antler.jpg",
+    date: "18-19 Nov 2023",
+    location: "Antler, Bangalore"
+  },
+  {
+    title: "Based Fellowship 2.0 @Dharamshala",
+    description: "Second edition of our flagship fellowship with an expanded curriculum and network.",
+    src: "/images/events/based-fellowship-2-dharamshala.jpg",
+    date: "10-17 Sep 2023",
+    location: "Dharamshala, India"
   }
 ];
 

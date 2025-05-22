@@ -82,9 +82,9 @@ const NavLinks = ({ className }: NavLinksProps) => {
       <Link to="/programs" className="font-medium text-foreground hover:text-fbi-blue transition">
         Programs
       </Link>
-      <a href="https://0xfbi.com/fbi-opportunites" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-fbi-blue transition">
+      <Link to="/builders" className="font-medium text-foreground hover:text-fbi-blue transition">
         Builders
-      </a>
+      </Link>
     </div>
   );
 };
