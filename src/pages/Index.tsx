@@ -46,39 +46,46 @@ Big love to the Based Fellowship fam! 🫡`,
     authorImage: undefined
   },
   {
-    content: "From zero to dApp deployed – FBI programs made it possible.",
-    author: "Newbie Coder",
-    handle: "hello_web3",
+    content: `It was great to spend time with y'all.
+Ever since my uni, this was one of the most fun thing I was part of to this day.
+Just got into my room and already missing all the hustle bustles, thanks y'all🫡`,
+    author: "Jaseem",
+    handle: "jaseem",
     authorImage: undefined
   },
   {
-    content: "The resources and workshops provided by FBI are top-notch.",
-    author: "Learner",
-    handle: "knowledge_seeker",
+    content: "Big ups to the fbi team for hosting & curating such a fantastic fellowship",
+    author: "Dev Motlani",
+    handle: "devmotlani",
     authorImage: undefined
   },
   {
-    content: "FBI is truly supercharging builders in the ecosystem. Grateful to be part of it.",
-    author: "Ecosystem Dev",
-    handle: "superchain_supporter",
+    content: `I just want to give a thank-you message to all the FBI organizers and mentors for organizing this fellowship. I can say for sure I will remember this by heart. Special thanks to @roshanvadassery, @akhil_bvs, @Saxenasaheb, @Kp2kpx, @pratzyy, and all other organizers behind the fellowship for making this happen and for the guidance of personal, business and career during the fellowship (Rosan and Rahul bhai 🙌🏻).`,
+    author: "Nisarg Thakkar",
+    handle: "itznishuu_",
     authorImage: undefined
   },
   {
-    content: "Found my co-founder through an FBI event! #serendipity",
-    author: "Founder",
-    handle: "startup_journey",
+    content: `thank you base and fbi team for an amazing experience at dharamshala!
+
+thank you mentors and fellows for making this fellowship a memorable one for me. really thankful for the great friends i have made in this journey.`,
+    author: "Aditi Polkam",
+    handle: "aditipolkam",
     authorImage: undefined
   },
   {
-    content: "The Based Fellowship is a game-changer. Highly recommend!",
-    author: "Fellow",
-    handle: "based_builder",
+    content: `Honestly, this journey has been one for the books — something I’ll carry with me for a long, long time. Massive thanks to  @Saxenasaheb @akhil_bvs @roshanvadassery @Kp2kpx  @pratzyy @tushaarmehtaa and every single person behind the scenes who poured their energy into making this fellowship what it was.
+    `,
+    author: "Nidhi K",
+    handle: "nidhi",
     authorImage: undefined
   },
   {
-    content: "FBI's commitment to fostering talent is inspiring. Keep up the great work!",
-    author: "Admirer",
-    handle: "community_voice",
+    content: `I just want to take a moment to thank and applaud Base Fellowship 2.0.
+I've been to many hacker houses and hackathons before, but this experience was truly different — and honestly, one of the best I've ever had. I will remember this forever.
+In today's world, we're often stuck in competition mode. Even at hackathons, while we build great products, the spirit of real collaboration sometimes gets lost.`,
+    author: "Mohit",
+    handle: "mohit",
     authorImage: undefined
   },
 ];
@@ -124,64 +131,64 @@ const pastEvents = [
   {
     title: "Frames v1 Hackathon @Antler",
     description: "A hackathon focused on Frames v1 development with hands-on workshops and networking.",
-    src: "/images/events/frames-v1-hackathon-antler.jpg",
-    date: "15-17 Nov 2024",
+    src: "/events/frames-v1-hackathon-antler.jpg",
+    date: "February 2024",
     location: "Antler, Bangalore"
   },
   {
     title: "Base Meetup @Zo",
     description: "Community meetup for Base developers and enthusiasts to connect and share knowledge.",
-    src: "/images/events/base-meetup-zo.jpg",
-    date: "2 Nov 2024",
-    location: "ZO, Bangalore"
+    src: "/events/base-meetup-zo.jpg",
+    date: "March 2024",
+    location: "Zo House, Bangalore"
   },
   {
     title: "SuperBased Meetups",
     description: "A series of community-driven meetups bringing together builders across the ecosystem.",
-    src: "/images/events/superbased-meetups.jpg",
-    date: "Oct 2024",
-    location: "Various Locations, Bangalore"
+    src: "/events/superbased-meetups.jpg",
+    date: "March 2024",
+    location: "Various Locations, India"
   },
   {
     title: "Based Fellowship 1.0 @Dharamshala",
     description: "Our inaugural fellowship program that kickstarted many Web3 journeys.",
-    src: "/images/events/based-fellowship-1-dharamshala.jpg",
-    date: "1-7 Apr 2024",
-    location: "Dharamshala, India"
+    src: "/events/based-fellowship-1-dharamshala.jpg",
+    date: "May 2024",
+    location: "Dharamshala, Himachal Pradesh"
   },
   {
     title: "Farcaster Fridays @Hashed Haus",
-    description: "Weekly gatherings for Farcaster enthusiasts to build and collaborate.",
-    src: "/images/events/farcaster-fridays-hashed-haus.jpg",
-    date: "Jul - Aug 2024",
+    description: "Monthly gatherings for Farcaster enthusiasts to build and collaborate.",
+    src: "/events/farcaster-fridays-hashed-haus.jpg",
+    date: "September 2024",
     location: "Hashed Haus, Bangalore"
   },
   {
     title: "Based Around The World Buildathon",
     description: "Global virtual buildathon connecting builders from around the world.",
-    src: "/images/events/based-around-the-world-buildathon.jpg",
-    date: "10-30 Jun 2024",
+    src: "/events/based-around-the-world-buildathon.jpg",
+    date: "October 2024",
     location: "Virtual"
   },
   {
     title: "Base Events @ETHIndia & IBW",
     description: "Engaging with the community and showcasing Base at premier blockchain events.",
-    src: "/images/events/base-events-ethindia-ibw.jpg",
-    date: "5-10 Dec 2023",
+    src: "/events/base-events-ethindia-ibw.jpg",
+    date: "1-7 Dec 2023",
     location: "Bangalore, India"
   },
   {
     title: "Coinbase AI Hackathon @Antler",
     description: "Hackathon focused on AI and blockchain integration, hosted at Antler.",
-    src: "/images/events/coinbase-ai-hackathon-antler.jpg",
+    src: "/events/coinbase-ai-hackathon-antler.jpg",
     date: "18-19 Nov 2023",
     location: "Antler, Bangalore"
   },
   {
     title: "Based Fellowship 2.0 @Dharamshala",
     description: "Second edition of our flagship fellowship with an expanded curriculum and network.",
-    src: "/images/events/based-fellowship-2-dharamshala.jpg",
-    date: "10-17 Sep 2023",
+    src: "/events/based-fellowship-2-dharamshala.jpg",
+    date: "27-11 May 2025",
     location: "Dharamshala, India"
   }
 ];

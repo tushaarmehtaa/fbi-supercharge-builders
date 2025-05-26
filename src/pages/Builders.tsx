@@ -194,9 +194,9 @@ const Builders = () => {
             <div className="relative mb-8 overflow-hidden rounded-2xl shadow-xl">
               <div className="absolute inset-0 bg-gradient-to-r from-fbi-blue to-fbi-purple opacity-90"></div>
               <div className="relative z-10 p-12 text-white">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Could This Be You?</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Be one of us</h2>
                 <p className="text-xl mb-8 text-blue-100 max-w-2xl mx-auto">
-                  Join our growing community of builders and be part of the next wave of Web3 innovation.
+                  Join our community of builders, operators and founders to be part of the crew who bring the entire world onchain.
                 </p>
                 <Button 
                   size="lg" 
