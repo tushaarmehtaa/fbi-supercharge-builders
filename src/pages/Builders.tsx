@@ -88,19 +88,64 @@ const Builders = () => {
           // Map Supabase data to BuilderCardProps if necessary
           // Assuming column names match the props directly
           // If avatar_url is null from DB, BuilderCard should handle a default or no image
-          const fetchedBuilders: BuilderCardProps[] = data.map(builder => ({
-            id: builder.id.toString(), // Ensure id is string if it's not from DB
-            name: builder.name,
-            role: builder.role,
-            bio: builder.bio,
-            avatarUrl: builder.avatar_url || undefined, // Pass undefined if null for default handling in card
-            skills: builder.skills || [],
-            projects: builder.projects || [],
-            // Add social links if they are part of BuilderCardProps and you fetch them
-            // twitterUrl: builder.twitter_url || undefined,
-            // githubUrl: builder.github_url || undefined,
-            // linkedinUrl: builder.linkedin_url || undefined,
-          }));
+          const fetchedBuilders: BuilderCardProps[] = data.map(builder => {
+            console.log('Builder skills type:', typeof builder.skills, 'Value:', builder.skills);
+            const rawSkills = builder.skills;
+            let skillsArray: string[] = [];
+            if (Array.isArray(rawSkills)) {
+              skillsArray = rawSkills.filter(item => typeof item === 'string'); // Ensure all items are strings
+            } else if (typeof rawSkills === 'string' && rawSkills.trim() !== '') {
+              if (rawSkills.startsWith('[') && rawSkills.endsWith(']')) {
+                try {
+                  const parsed = JSON.parse(rawSkills);
+                  if (Array.isArray(parsed)) {
+                    skillsArray = parsed.filter(item => typeof item === 'string');
+                  } else { // If parsed is not an array, fall back to comma separation
+                    skillsArray = rawSkills.split(',').map(s => s.trim()).filter(s => s !== '');
+                  }
+                } catch (e) { // If JSON.parse fails, fall back to comma separation
+                  skillsArray = rawSkills.split(',').map(s => s.trim()).filter(s => s !== '');
+                }
+              } else { // Not a JSON string, assume comma-separated
+                skillsArray = rawSkills.split(',').map(s => s.trim()).filter(s => s !== '');
+              }
+            }
+
+            const rawProjects = builder.projects;
+            let projectsArray: string[] = [];
+            if (Array.isArray(rawProjects)) {
+              projectsArray = rawProjects.filter(item => typeof item === 'string');
+            } else if (typeof rawProjects === 'string' && rawProjects.trim() !== '') {
+              // Assuming projects could also be a comma-separated string or JSON string array
+              if (rawProjects.startsWith('[') && rawProjects.endsWith(']')) {
+                try {
+                  const parsed = JSON.parse(rawProjects);
+                  if (Array.isArray(parsed)) {
+                    projectsArray = parsed.filter(item => typeof item === 'string');
+                  } else {
+                    projectsArray = rawProjects.split(',').map(s => s.trim()).filter(s => s !== '');
+                  }
+                } catch (e) {
+                  projectsArray = rawProjects.split(',').map(s => s.trim()).filter(s => s !== '');
+                }
+              } else {
+                projectsArray = rawProjects.split(',').map(s => s.trim()).filter(s => s !== '');
+              }
+            }
+
+            return {
+              id: builder.id.toString(),
+              name: builder.name,
+              role: builder.role,
+              bio: builder.bio,
+              avatarUrl: builder.avatar_url || undefined,
+              skills: skillsArray,
+              projects: projectsArray,
+              // twitterUrl: builder.twitter_url || undefined,
+              // githubUrl: builder.github_url || undefined,
+              // linkedinUrl: builder.linkedin_url || undefined,
+            };
+          });
           setBuilders(fetchedBuilders);
         }
       } catch (error) {
@@ -119,9 +164,9 @@ const Builders = () => {
     (builder) =>
       builder.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       builder.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      builder.skills.some(skill => 
-        skill.toLowerCase().includes(searchQuery.toLowerCase())
-      )
+      (Array.isArray(builder.skills) && builder.skills.some(skill => 
+        typeof skill === 'string' && skill.toLowerCase().includes(searchQuery.toLowerCase())
+      ))
   );
 
   if (isLoading) {

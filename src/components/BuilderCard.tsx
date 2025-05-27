@@ -52,12 +52,12 @@ const BuilderCard = ({
         <p className="text-sm text-gray-600 line-clamp-3">{bio}</p>
       </CardContent>
       <CardFooter className="flex flex-wrap gap-2 pt-4 border-t">
-        {skills.slice(0, 3).map((skill, index) => (
+        {Array.isArray(skills) && skills.slice(0, 3).map((skill, index) => (
           <Badge key={index} variant="outline" className="text-xs">
             {skill}
           </Badge>
         ))}
-        {skills.length > 3 && (
+        {Array.isArray(skills) && skills.length > 3 && (
           <Badge variant="outline" className="text-xs">
             +{skills.length - 3} more
           </Badge>
